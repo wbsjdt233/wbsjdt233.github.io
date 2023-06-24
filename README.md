@@ -2,9 +2,9 @@
 
 一个新标签页？（逃
 
-短链接 wbsjdt.site 
+短链接：wbsjdt.site 
 
-Github wbsjdt233.github.io
+Github：wbsjdt233.github.io
 
 # 更新日志
 
