@@ -1,8 +1,8 @@
-# New Tab
+# xTab
 
 一个新标签页？（逃
 
-短链接：wbsjdt.site 
+短链接：xtab.site 
 
 Github：wbsjdt233.github.io
 
