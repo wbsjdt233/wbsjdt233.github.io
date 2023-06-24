@@ -1,8 +1,9 @@
 <script language=javascript>
     var number = Math.random();
-    number = Math.ceil(number * 1145141919); 
-    document.write("<span>随机数：<span>"+number);
-    </script>
+    input = Math.ceil(number * 1145141919); 
+    function doc(){
+      document.write(input);}    
+</script>
 <!DOCTYPE html>
 <html>
 
@@ -11,8 +12,11 @@
 	<title>简约起始页</title>
 </head>
     <body>
-        <form action="https://cn.bing.com/search">
-            <input type="text" name="q"/><input type="submit"  value="搜索"/>
+        <div>
+                  <p> 随机数：<script>doc(input)</script></p>
+                  <form action="https://cn.bing.com/search">
+                  <input type="text" name="q"/><input type="submit"  value="搜索"/>
+         </div>
          <body background="wallpaper.jpg" 
                style="background-repeat:no-repeat
                background-attachment:fixed;
