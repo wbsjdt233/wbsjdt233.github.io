@@ -2,6 +2,12 @@
 
 一个新标签页？（逃
 
+短链接 wbsjdt.site 
+
+Github wbsjdt233.github.io
+
+# 更新日志
+
 v0.1 啥也没有
 
 v0.2 添加搜索框
@@ -13,5 +19,4 @@ v0.4 引擎改为bing
 
 v0.5 优化界面
 
-短链接 wbsjdt.site 
-Github wbsjdt233.github.io
+
