@@ -1,4 +1,4 @@
-# wbsjdt233.github.io
+# New Tab
 
 一个新标签页？（逃
 
@@ -14,3 +14,4 @@ v0.4 引擎改为bing
 v0.5 优化界面
 
 短链接 wbsjdt.site 
+Github wbsjdt233.github.io
