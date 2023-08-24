@@ -1,121 +1,73 @@
-<script language="JavaScript">
-    const divObj=document.getElementsByClassName('box')[0];
-    setInterval(()=>{
-        const nowTime=getNowTime();
-        divObj.innerText=nowTime;
-    })
-    function getNowTime(){
-        const date=new Date();
-        const year=date.getFullYear();
-        const month=date.getMonth();
-        const day=date.getDate();
-        const hour=date.getHours();
-        const minite=date.getMinutes();
-        const seconds=date.getSeconds();
-        return `${year}-${month}-${day} ${hour}:${minite}:${seconds<10?'0'+seconds:seconds}`
-    }
-</script>
 <!DOCTYPE html>
-<html>
-
-<!--预设+-->
+<html class="all">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>xTab</title>
-    <link href="demo.css" rel="stylesheet" type="text/css" /> 
+    <title>xTab</title>
+    <link href="demo.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="test/html" ; charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <script src="main.js">   </script>
     <style>
-        .body {
-            padding-bottom: 25px;
-        }
- 
-        .url {
-            color:black
-        }
-
-        .index {
-            color:grey
-        }
-        
-        .a {
-            clear: both
-        }
-
-        .title {
-            font-size:30px;
-            color:white;
-            padding-left:5px
-        }
-
-        .footer {
-            position: fixed;
-            left: 0px;
-            bottom: 0px;
-            width: 100%;
-            height: 24px;
-            background-color: #333;
-            z-index: 9999;
-            color:white;
-            padding-left:5px
-        }
     </style>
 </head>
-
-<!--预设end-->
 
 <body>
     <div>
         <span class="title">xTab</span>
-    <div class="main" style="border: 1px solid rgba(255, 255, 255, 0.1); padding-left:13px;padding-top:12px;backdrop-filter: blur(10px); border-radius: 8px; background-color: rgba(255, 255, 255, 0.2);">
-              <form action="https://cn.bing.com/search">
-              <input type="text" name="q"/><input type="submit"  value="搜索"/><br><br>
-	      <span class="index">购物</span>
-              <a target="_blank" href="https://www.tmall.com/" class="url" title='天猫'>天猫</a>
-              <a target="_blank" href="https://www.jd.com/" class="url" title='京东'>京东</a>
-              <a href="http://www.taobao.com/" class="url" title='淘宝网'>淘宝</a>
-              <a href="https://sugs.suning.com/ukrdRpZU" class="url" target="_blank" title='苏宁易购'>苏宁易购</a>				
-              <a href="http://www.dangdang.com/" class="url" target="_blank" title='当当'>当当</a><br>
-	      <span class="index">新闻</span>
-              <a href="http://news.qq.com/" class="url" target="_blank" title='腾讯新闻'>腾讯新闻</a>
-              <a href="http://news.163.com/" class="url" target="_blank" title='网易新闻'>网易新闻</a>				
-              <a href="http://www.thepaper.cn/" class="url" target="_blank" title='澎湃新闻'>澎湃新闻</a>
-              <a href="http://news.sina.com.cn/" class="url" target="_blank" title='新浪新闻'>新浪新闻</a><br>
-	      <span class="index">社交</span>
-              <a href="https://weibo.com/" class="url" target="_blank" title='新浪微博'>新浪微博</a>
-              <a href="https://wx.qq.com/" class="url" target="_blank" title='网页微信'>微信</a>
-              <a href="https://tieba.baidu.com/index.html" class="url" target="_blank" title='百度贴吧'>百度贴吧</a>				
-              <a href="https://www.douban.com/" class="url" target="_blank" title='豆瓣'>豆瓣</a>
-              <a href="http://www.zhihu.com/" class="url" target="_blank" title='知乎'>知乎</a><br>
-	      <span class="index">工具</span>
-              <a href="http://www.weather.com.cn/" class="url" target="_blank" title='天气'>天气</a>
-              <a href="http://qq.ip138.com/day/" class="url" target="_blank" title='日历'>日历</a>
-              <a href="http://www.zxjsq.net/" class="url" target="_blank" title='计算器'>计算器</a>
-              <a href="http://fanyi.baidu.com/" class="url" target="_blank" title='百度翻译'>百度翻译</a>				
-              <a href="https://translate.google.cn/" class="url" target="_blank" title='谷歌翻译'>谷歌翻译</a>
-              <a href="http://map.baidu.com/" class="url" target="_blank" title='百度地图'>百度地图</a>
-              <a href="http://www.kuaidi100.com/" class="url" target="_blank" title='快递100'>快递查询</a>
-              <a href="https://mail.qq.com/" class="url" target="_blank" title='QQ邮箱'>QQ邮箱</a>
-              <a href="http://www.12306.cn/mormhweb/" class="url" target="_blank" title='12306'>12306</a><br>
-	      <span class="index">娱乐</span>
-              <a href="https://v.qq.com/index.html" class="url" target="_blank" title='腾讯视频'>腾讯视频</a>
-              <a href="http://www.iqiyi.com/" class="url" target="_blank" title='爱奇艺视频'>爱奇艺视频</a>
-              <a target="_blank" class="url" href="www.bilibili.com">Bilibili<a></a>
-              <a href="http://www.mgtv.com/" class="url" target="_blank" title='芒果TV'>芒果TV</a>
-              <a href="https://www.douyu.com/" class="url" target="_blank" title='斗鱼直播'>斗鱼直播</a>				
-              <a href="http://music.163.com/" class="url" target="_blank" title='网易云音乐'>网易云音乐</a>			
+        <span class="timeid"> 现在时间:<span id="time"> </span></span>
+        <div class="main">
+            <form action="https://cn.bing.com/search">
+                <input type="text" name="q"><input type="submit" value="搜索"><br><br>
+                <span class="index">购物</span>
+                <a target="_blank" href="https://www.tmall.com/" class="url" title="天猫">天猫</a>
+                <a target="_blank" href="https://www.jd.com/" class="url" title="京东">京东</a>
+                <a href="http://www.taobao.com/" class="url" title="淘宝网">淘宝</a>
+                <a href="https://sugs.suning.com/ukrdRpZU" class="url" target="_blank" title="苏宁易购">苏宁易购</a>
+                <a href="http://www.dangdang.com/" class="url" target="_blank" title="当当">当当</a><br>
+                <span class="index">新闻</span>
+                <a href="http://news.qq.com/" class="url" target="_blank" title="腾讯新闻">腾讯新闻</a>
+                <a href="http://news.163.com/" class="url" target="_blank" title="网易新闻">网易新闻</a>
+                <a href="http://www.thepaper.cn/" class="url" target="_blank" title="澎湃新闻">澎湃新闻</a>
+                <a href="http://news.sina.com.cn/" class="url" target="_blank" title="新浪新闻">新浪新闻</a><br>
+                <span class="index">社交</span>
+                <a href="https://weibo.com/" class="url" target="_blank" title="新浪微博">新浪微博</a>
+                <a href="https://wx.qq.com/" class="url" target="_blank" title="网页微信">微信</a>
+                <a href="https://tieba.baidu.com/index.html" class="url" target="_blank" title="百度贴吧">百度贴吧</a>
+                <a href="https://www.douban.com/" class="url" target="_blank" title="豆瓣">豆瓣</a>
+                <a href="http://www.zhihu.com/" class="url" target="_blank" title="知乎">知乎</a><br>
+                <span class="index">工具</span>
+                <a href="http://www.weather.com.cn/" class="url" target="_blank" title="天气">天气</a>
+                <a href="http://qq.ip138.com/day/" class="url" target="_blank" title="日历">日历</a>
+                <a href="http://www.zxjsq.net/" class="url" target="_blank" title="计算器">计算器</a>
+                <a href="http://fanyi.baidu.com/" class="url" target="_blank" title="百度翻译">百度翻译</a>
+                <a href="https://translate.google.cn/" class="url" target="_blank" title="谷歌翻译">谷歌翻译</a>
+                <a href="http://map.baidu.com/" class="url" target="_blank" title="百度地图">百度地图</a>
+                <a href="http://www.kuaidi100.com/" class="url" target="_blank" title="快递100">快递查询</a>
+                <a href="https://mail.qq.com/" class="url" target="_blank" title="QQ邮箱">QQ邮箱</a>
+                <a href="http://www.12306.cn/mormhweb/" class="url" target="_blank" title="12306">12306</a><br>
+                <span class="index">娱乐</span>
+                <a href="https://v.qq.com/index.html" class="url" target="_blank" title="腾讯视频">腾讯视频</a>
+                <a href="http://www.iqiyi.com/" class="url" target="_blank" title="爱奇艺视频">爱奇艺视频</a>
+                <a target="_blank" class="url" href="https://www.bilibili.com">Bilibili</a><a></a>
+                <a href="http://www.mgtv.com/" class="url" target="_blank" title="芒果TV">芒果TV</a>
+                <a href="https://www.douyu.com/" class="url" target="_blank" title="斗鱼直播">斗鱼直播</a>
+                <a href="http://music.163.com/" class="url" target="_blank" title="网易云音乐">网易云音乐</a>
 
-    <div>					
-		
+                <div>
+
+                </div>
+
+
+            </form>
+        </div>
+
+        <a class="footer" target="_blank" href="https://xtab.site/about">关于</a>
+
+
+
+
     </div>
+</body>
 
-    
-</div>
-     <body background=https://api.dujin.org/bing/1920.php
-           style="background-repeat:no-repeat
-           background-attachment:fixed;
-           background-size:100% 100%; ">
-    <a  class="footer" target="_blank" href="https://xtab.site/about">关于</a>
-    </body>
 </html>
-
-		      

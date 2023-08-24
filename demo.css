@@ -48,3 +48,36 @@
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.2);
 }
+
+.titfg {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    font-size: 14px;
+    color: #999;
+}
+
+.titfg::before,
+.titfg::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    background: #ccc;
+    top: 50%;
+}
+
+.titfg::before {
+    margin-left: -10px;
+    transform: translateX(-100%);
+}
+
+.titfg::after {
+    margin-left: 10px;
+}
+
+.timeid {
+    float: right;
+    color: white
+}
