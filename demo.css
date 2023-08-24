@@ -1,1 +1,50 @@
+.body {
+    padding-bottom: 25px;
+}
 
+.url {
+    color: black
+}
+
+.index {
+    color: grey
+}
+
+.a {
+    clear: both
+}
+
+.title {
+    font-size: 30px;
+    color: white;
+    padding-left: 5px
+}
+
+.footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 24px;
+    background-color: #333;
+    z-index: 9999;
+    color: white;
+    padding-left: 5px
+}
+
+.all {
+    width: 100%;
+    height: 100%;
+    background: url("https://api.dujin.org/bing/1920.php");
+    background-size: cover;
+    background-position: center;
+}
+
+.main {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 13px;
+    padding-top: 12px;
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
