@@ -3,7 +3,8 @@
 }
 
 .url {
-    color: black
+    color: black;
+    text-decoration: none
 }
 
 .index {
