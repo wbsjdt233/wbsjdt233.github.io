@@ -7,6 +7,10 @@
     text-decoration: none
 }
 
+.url:hover {
+    color:white
+}
+
 .index {
     color: grey
 }
