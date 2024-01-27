@@ -1,3 +1,29 @@
+.search-box-container {
+  width: 400px; /* 设置容器宽度 */
+  margin: 50px; /* 设置外边距 */
+}
+ 
+.transparent-search-box {
+  width: 100%; /* 设置输入框宽度 */
+  height: 40px; /* 设置输入框高度 */
+  padding: 0 15px; /* 设置内边距 */
+  background-color: rgba(255, 255, 255, 0.5); /* 设置半透明背景 */
+  border: none; /* 移除边框 */
+  border-radius: 20px; /* 设置圆角 */
+  color: #333; /* 设置文本颜色 */
+  font-size: 16px; /* 设置字体大小 */
+  transition: background-color 0.3s; /* 设置背景颜色过渡动画 */
+}
+ 
+.transparent-search-box::placeholder {
+  color: #aaa; /* 设置占位符文本颜色 */
+}
+ 
+.transparent-search-box:focus {
+  background-color: rgba(255, 255, 255, 0.9); /* 输入框聚焦时的背景颜色 */
+  outline: none; /* 移除聚焦时的轮廓线 */
+}
+
 .body {
     padding-bottom: 25px;
 }
