@@ -12,6 +12,7 @@
             overflow: hidden;
             font-family: Arial, sans-serif;
             color: white;
+            background-color: #1b1b1b;
         }
 
         /* 动态壁纸样式 */
@@ -29,59 +30,99 @@
             object-fit: cover;
         }
 
-        /* Bing搜索框样式 */
-        #search-bar {
+        /* 时间和日期样式 */
+        #date-time {
             position: absolute;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 300px;
+            text-align: center;
+        }
+
+        #time {
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #date {
+            font-size: 1.5em;
+            text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 搜索框样式 */
+        #search-bar {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
         }
 
         #search-bar input[type="text"] {
-            width: 80%;
-            padding: 8px;
+            width: 100%;
+            padding: 15px;
+            padding-right: 50px;
             border: none;
-            border-radius: 5px 0 0 5px;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.2em;
+            outline: none;
         }
 
         #search-bar button {
-            width: 20%;
-            padding: 8px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
             border: none;
-            border-radius: 0 5px 5px 0;
-            background-color: #555;
-            color: white;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
             cursor: pointer;
         }
 
-        /* 日期和时间样式 */
-        #date-time {
+        #search-bar button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* 常用软件图标样式 */
+        #menu-icon {
             position: absolute;
-            top: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.5em;
-            text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #menu-icon div {
+            width: 30px;
+            height: 4px;
+            background-color: white;
+            margin: 3px 0;
         }
 
         /* 常用网站折叠菜单样式 */
         #shortcuts {
             position: absolute;
-            top: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
+            bottom: 80px;
+            left: 20px;
+            width: 200px;
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             text-align: center;
             padding: 10px;
             cursor: pointer;
-        }
-
-        #shortcut-links {
             display: none;
-            margin-top: 10px;
         }
 
         #shortcut-links a {
@@ -99,24 +140,34 @@
 <body>
     <!-- 动态壁纸 -->
     <div id="wallpaper-container">
-        <img src="https://api.paugram.com/wallpaper/" alt="Anime Wallpaper" id="wallpaper">
+        <img src="https://api.lqbby.com/api/dm" alt="Anime Wallpaper" id="wallpaper">
     </div>
 
-    <!-- Bing搜索框 -->
+    <!-- 时间和日期 -->
+    <div id="date-time">
+        <div id="time"></div>
+        <div id="date"></div>
+    </div>
+
+    <!-- 搜索框 -->
     <div id="search-bar">
         <form action="https://www.bing.com/search" method="get">
             <input type="text" name="q" placeholder="Search with Bing...">
-            <button type="submit">Search</button>
+            <button type="submit">
+                <img src="https://image.flaticon.com/icons/png/512/54/54481.png" alt="Search Icon">
+            </button>
         </form>
     </div>
 
-    <!-- 当前日期和时间 -->
-    <div id="date-time">
-        <!-- 这里会由JavaScript动态更新 -->
+    <!-- 常用软件图标 -->
+    <div id="menu-icon" onclick="toggleShortcuts()">
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
 
     <!-- 常用网站折叠菜单 -->
-    <div id="shortcuts" onclick="toggleShortcuts()">
+    <div id="shortcuts">
         常用网站
         <div id="shortcut-links">
             <a href="https://www.google.com" target="_blank">Google</a>
@@ -127,11 +178,14 @@
     </div>
 
     <script>
-        // 动态显示日期和时间
+        // 动态显示时间和日期
         function updateTime() {
             const now = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-            document.getElementById('date-time').innerText = now.toLocaleDateString('zh-CN', options);
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const dateOptions = { year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short' };
+
+            document.getElementById('time').innerText = now.toLocaleTimeString('zh-CN', timeOptions);
+            document.getElementById('date').innerText = `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日, ${now.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase()}`;
         }
 
         // 每秒更新一次时间
@@ -140,12 +194,8 @@
 
         // 折叠/展开常用网站链接
         function toggleShortcuts() {
-            const shortcuts = document.getElementById('shortcut-links');
-            if (shortcuts.style.display === "block") {
-                shortcuts.style.display = "none";
-            } else {
-                shortcuts.style.display = "block";
-            }
+            const shortcuts = document.getElementById('shortcuts');
+            shortcuts.style.display = shortcuts.style.display === "block" ? "none" : "block";
         }
     </script>
 </body>
