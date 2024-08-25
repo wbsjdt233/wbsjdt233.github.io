@@ -1,1 +1,152 @@
-<p>test<p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Desktop</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* 动态壁纸样式 */
+        #wallpaper-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        #wallpaper {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Bing搜索框样式 */
+        #search-bar {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+        }
+
+        #search-bar input[type="text"] {
+            width: 80%;
+            padding: 8px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+
+        #search-bar button {
+            width: 20%;
+            padding: 8px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* 日期和时间样式 */
+        #date-time {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 常用网站折叠菜单样式 */
+        #shortcuts {
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #shortcut-links {
+            display: none;
+            margin-top: 10px;
+        }
+
+        #shortcut-links a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+        #shortcut-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态壁纸 -->
+    <div id="wallpaper-container">
+        <img src="https://media.giphy.com/media/TU76e2JHkPchG/giphy.gif" alt="Anime Wallpaper" id="wallpaper">
+    </div>
+
+    <!-- Bing搜索框 -->
+    <div id="search-bar">
+        <form action="https://www.bing.com/search" method="get">
+            <input type="text" name="q" placeholder="Search with Bing...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- 当前日期和时间 -->
+    <div id="date-time">
+        <!-- 这里会由JavaScript动态更新 -->
+    </div>
+
+    <!-- 常用网站折叠菜单 -->
+    <div id="shortcuts" onclick="toggleShortcuts()">
+        常用网站
+        <div id="shortcut-links">
+            <a href="https://www.google.com" target="_blank">Google</a>
+            <a href="https://www.youtube.com" target="_blank">YouTube</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="https://www.reddit.com" target="_blank">Reddit</a>
+        </div>
+    </div>
+
+    <script>
+        // 动态显示日期和时间
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            document.getElementById('date-time').innerText = now.toLocaleDateString('zh-CN', options);
+        }
+
+        // 每秒更新一次时间
+        setInterval(updateTime, 1000);
+        updateTime(); // 初始调用以显示当前时间
+
+        // 折叠/展开常用网站链接
+        function toggleShortcuts() {
+            const shortcuts = document.getElementById('shortcut-links');
+            if (shortcuts.style.display === "block") {
+                shortcuts.style.display = "none";
+            } else {
+                shortcuts.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
