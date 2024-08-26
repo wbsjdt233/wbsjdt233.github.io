@@ -1,81 +1,288 @@
 <!DOCTYPE html>
-<html class="all">
-
+<html lang="en">
 <head>
-    <title>xTab</title>
-    <link href="demo.css" rel="stylesheet" type="text/css">
-    <meta http-equiv="Content-Type" content="test/html" ; charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial scale=1.0">
-    <meta name=”Keywords” Content="新标签页,xtab,hao123,tab,标签页,网页">
-    <mata name=”Description” Content="一个简约风新标签页">
-    <script src="main.js">   </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Desktop</title>
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: white;
+            background-color: #1b1b1b;
+            background-image: url('https://www.dmoe.cc/random.php');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* 时间和日期样式 */
+        #date-time {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        #time {
+            font-size: 2em;
+            font-weight: bold;
+            text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        #date {
+            font-size: 0.8em;
+            text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        /* 搜索框样式 */
+        #search-bar {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            display: flex;
+        }
+
+        #search-bar input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            background-color: rgba(255, 255, 255, 0.7);
+            color: white;
+            font-size: 1.2em;
+            outline: none;
+        }
+
+        #search-bar button {
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #search-bar button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* 菜单按钮样式 */
+        #menu-icon {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        #menu-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 折叠菜单样式 */
+        #shortcuts {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            width: 90%;
+            max-width: 200px;
+            border-radius: 10px;
+            text-align: center;
+            padding: 10px;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .main {
+            margin-bottom: 10px;
+        }
+
+        .index {
+            display: block;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 5px 0;
+            color: #ccc;
+            text-align: left;
+        }
+
+        .urls {
+            display: none;
+            text-align: left;
+        }
+
+        .urls a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 5px 0;
+            padding-left: 10px;
+        }
+
+        .urls a:hover {
+            text-decoration: underline;
+        }
+
+        /* 媒体查询 */
+        @media (max-width: 600px) {
+            #time {
+                font-size: 1.5em;
+            }
+
+            #date {
+                font-size: 0.7em;
+            }
+
+            #search-bar {
+                width: 90%;
+            }
+
+            #menu-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            #shortcuts {
+                width: 80%;
+            }
+        }
     </style>
 </head>
-
 <body>
-    <div>
-        <span class="title">xTab</span>
-        <span class="timeid"> 现在时间:<span id="time"> </span></span>
+    <!-- 时间和日期 -->
+    <div id="date-time">
+        <div id="time"></div>
+        <div id="date"></div>
     </div>
-    
-    <div class="search-box-container">
-    <form action="https://cn.bing.com/search">
-    <input type="text" name="q" class="transparent-search-box"><input type="submit" value="搜索"><br/><br/>
-</div>
 
-    <div>
+    <!-- 搜索框 -->
+    <div id="search-bar">
+        <form action="https://www.bing.com/search" method="get" style="width: 100%; display: flex;">
+            <input type="text" name="q" placeholder="Search with Bing...">
+            <button type="submit">
+                <img src="b.png" alt="Search Icon">
+            </button>
+        </form>
+    </div>
+
+    <!-- 常用软件图标 -->
+    <div id="menu-icon" onclick="toggleShortcuts()">
+        <img src="a.png" alt="Menu Icon">
+    </div>
+
+    <!-- 折叠菜单 -->
+    <div id="shortcuts">
         <div class="main">
-                <span class="index">购物</span>
-                <a target="_blank" href="https://www.tmall.com/" class="url" title="天猫">天猫</a>
-                <a target="_blank" href="https://www.jd.com/" class="url" title="京东">京东</a>
-                <a href="http://www.taobao.com/" class="url" title="淘宝网">淘宝</a>
-                <a href="https://sugs.suning.com/ukrdRpZU" class="url" target="_blank" title="苏宁易购">苏宁易购</a>
-                <a href="http://www.dangdang.com/" class="url" target="_blank" title="当当">当当</a><br/>
-                <span class="index">新闻</span>
-                <a href="http://news.qq.com/" class="url" target="_blank" title="腾讯新闻">腾讯新闻</a>
-                <a href="http://news.163.com/" class="url" target="_blank" title="网易新闻">网易新闻</a>
-                <a href="http://www.thepaper.cn/" class="url" target="_blank" title="澎湃新闻">澎湃新闻</a>
-                <a href="http://news.sina.com.cn/" class="url" target="_blank" title="新浪新闻">新浪新闻</a><br/>
-                <span class="index">社交</span>
-                <a href="https://weibo.com/" class="url" target="_blank" title="新浪微博">新浪微博</a>
-                <a href="https://wx.qq.com/" class="url" target="_blank" title="网页微信">微信</a>
-                <a href="https://tieba.baidu.com/index.html" class="url" target="_blank" title="百度贴吧">百度贴吧</a>
-                <a href="https://www.douban.com/" class="url" target="_blank" title="豆瓣">豆瓣</a>
-                <a href="http://www.zhihu.com/" class="url" target="_blank" title="知乎">知乎</a><br/>
-                <span class="index">工具</span>
-                <a href="http://www.weather.com.cn/" class="url" target="_blank" title="天气">天气</a>
-                <a href="http://qq.ip138.com/day/" class="url" target="_blank" title="日历">日历</a>
-                <a href="http://www.zxjsq.net/" class="url" target="_blank" title="计算器">计算器</a>
-                <a href="http://fanyi.baidu.com/" class="url" target="_blank" title="百度翻译">百度翻译</a>
-                <a href="https://translate.google.cn/" class="url" target="_blank" title="谷歌翻译">谷歌翻译</a>
-                <a href="http://map.baidu.com/" class="url" target="_blank" title="百度地图">百度地图</a>
-                <a href="http://www.kuaidi100.com/" class="url" target="_blank" title="快递100">快递查询</a>
-                <a href="https://mail.qq.com/" class="url" target="_blank" title="QQ邮箱">QQ邮箱</a>
-                <a href="http://www.12306.cn/" class="url" target="_blank" title="12306">12306</a><br/>
-                <span class="index">娱乐</span>
-                <a href="https://v.qq.com" class="url" target="_blank" title="腾讯视频">腾讯视频</a>
-                <a href="http://www.iqiyi.com/" class="url" target="_blank" title="爱奇艺视频">爱奇艺视频</a>
-                <a target="_blank" class="url" href="https://www.bilibili.com" title="哔哩哔哩">Bilibili</a>
-                <a href="http://www.mgtv.com/" class="url" target="_blank" title="芒果TV">芒果TV</a>
-                <a href="https://www.douyu.com/" class="url" target="_blank" title="斗鱼直播">斗鱼直播</a>
-                <a href="http://music.163.com/" class="url" target="_blank" title="网易云音乐">网易云音乐</a><br/>
-
-                <div>
-
-                </div>
-
-
-            </form>
+            <span class="index" onclick="toggleUrls('shopping')">购物</span>
+            <div id="shopping" class="urls">
+                <a href="https://www.tmall.com/" target="_blank">天猫</a>
+                <a href="https://www.jd.com/" target="_blank">京东</a>
+                <a href="http://www.taobao.com/" target="_blank">淘宝网</a>
+                <a href="https://sugs.suning.com/ukrdRpZU" target="_blank">苏宁易购</a>
+                <a href="http://www.dangdang.com/" target="_blank">当当</a>
+            </div>
         </div>
 
-        <a class="footer" target="_blank" href="https://xtab.site/about">关于</a>
+        <div class="main">
+            <span class="index" onclick="toggleUrls('news')">新闻</span>
+            <div id="news" class="urls">
+                <a href="http://news.qq.com/" target="_blank">腾讯新闻</a>
+                <a href="http://news.163.com/" target="_blank">网易新闻</a>
+                <a href="http://www.thepaper.cn/" target="_blank">澎湃新闻</a>
+                <a href="http://news.sina.com.cn/" target="_blank">新浪新闻</a>
+            </div>
+        </div>
 
+        <div class="main">
+            <span class="index" onclick="toggleUrls('social')">社交</span>
+            <div id="social" class="urls">
+                <a href="https://weibo.com/" target="_blank">新浪微博</a>
+                <a href="https://wx.qq.com/" target="_blank">微信</a>
+                <a href="https://tieba.baidu.com/index.html" target="_blank">百度贴吧</a>
+                <a href="https://www.douban.com/" target="_blank">豆瓣</a>
+                <a href="http://www.zhihu.com/" target="_blank">知乎</a>
+            </div>
+        </div>
 
+        <div class="main">
+            <span class="index" onclick="toggleUrls('tools')">工具</span>
+            <div id="tools" class="urls">
+                <a href="http://www.weather.com.cn/" target="_blank">天气</a>
+                <a href="http://qq.ip138.com/day/" target="_blank">日历</a>
+                <a href="http://www.zxjsq.net/" target="_blank">计算器</a>
+                <a href="http://fanyi.baidu.com/" target="_blank">百度翻译</a>
+                <a href="https://translate.google.cn/" target="_blank">谷歌翻译</a>
+                <a href="http://map.baidu.com/" target="_blank">百度地图</a>
+                <a href="http://www.kuaidi100.com/" target="_blank">快递查询</a>
+                <a href="https://mail.qq.com/" target="_blank">QQ邮箱</a>
+                <a href="http://www.12306.cn/" target="_blank">12306</a>
+            </div>
+        </div>
 
+        <div class="main">
+            <span class="index" onclick="toggleUrls('entertainment')">娱乐</span>
+            <div id="entertainment" class="urls">
+                <a href="https://v.qq.com" target="_blank">腾讯视频</a>
+                <a href="http://www.iqiyi.com/" target="_blank">爱奇艺视频</a>
+                <a href="https://www.bilibili.com" target="_blank">Bilibili</a>
+                <a href="http://www.mgtv.com/" target="_blank">芒果TV</a>
+                <a href="https://www.douyu.com/" target="_blank">斗鱼直播</a>
+                <a href="http://music.163.com/" target="_
 
+blank">网易云音乐</a>
+            </div>
+        </div>
     </div>
-</body>
 
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var time = now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+            var date = now.toLocaleDateString();
+            document.getElementById('time').textContent = time;
+            document.getElementById('date').textContent = date;
+        }
+
+        function toggleShortcuts() {
+            var shortcuts = document.getElementById('shortcuts');
+            if (shortcuts.style.display === "none" || shortcuts.style.display === "") {
+                shortcuts.style.display = "block";
+            } else {
+                shortcuts.style.display = "none";
+            }
+        }
+
+        function toggleUrls(id) {
+            var urls = document.getElementById(id);
+            if (urls.style.display === "none" || urls.style.display === "") {
+                urls.style.display = "block";
+            } else {
+                urls.style.display = "none";
+            }
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
 </html>
