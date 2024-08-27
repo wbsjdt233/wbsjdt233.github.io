@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Desktop</title>
     <style>
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -35,11 +37,12 @@
         }
 
         #date {
-            font-size: 0.8em;
+            font-size: 1em;
+            margin-top: 5px;
             text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.7);
+            color: #bbb;
         }
 
-        /* 搜索框样式 */
         #search-bar {
             position: absolute;
             top: 40%;
@@ -59,6 +62,8 @@
             color: white;
             font-size: 1.2em;
             outline: none;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            /* 添加了阴影 */
         }
 
         #search-bar button {
@@ -71,7 +76,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            /* 添加了阴影 */
         }
+
+
 
         #search-bar button img {
             width: 20px;
@@ -105,7 +114,7 @@
             bottom: 80px;
             left: 20px;
             width: 90%;
-            max-width: 200px;
+            max-width: 250px;
             border-radius: 10px;
             text-align: center;
             padding: 10px;
@@ -124,11 +133,20 @@
             padding: 5px 0;
             color: #ccc;
             text-align: left;
+            position: relative;
+        }
+
+        .index::after {
+            content: ">";
+            position: absolute;
+            right: 10px;
+            transition: transform 0.5s;
         }
 
         .urls {
             display: none;
             text-align: left;
+            animation: slideUp 0.5s ease-out forwards;
         }
 
         .urls a {
@@ -141,6 +159,18 @@
 
         .urls a:hover {
             text-decoration: underline;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* 媒体查询 */
@@ -168,6 +198,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 时间和日期 -->
     <div id="date-time">
@@ -244,12 +275,22 @@
             <div id="entertainment" class="urls">
                 <a href="https://v.qq.com" target="_blank">腾讯视频</a>
                 <a href="http://www.iqiyi.com/" target="_blank">爱奇艺视频</a>
-                <a href="https://www.bilibili.com" target="_blank">Bilibili</a>
+                <a href="https://www.bilibili.com" target="_blank">哔哩哔哩</a>
                 <a href="http://www.mgtv.com/" target="_blank">芒果TV</a>
                 <a href="https://www.douyu.com/" target="_blank">斗鱼直播</a>
-                <a href="http://music.163.com/" target="_
+                <a href="http://music.163.com/" target="_blank">网易云音乐</a>
+            </div>
+        </div>
 
-blank">网易云音乐</a>
+        <!-- 加点东西 -->
+        <div class="main">
+            <span class="index" onclick="toggleUrls('extra')">加点东西</span>
+            <div id="extra" class="urls">
+                <a href="https://a.com" target="_blank">a(尚未开放)</a>
+                <a href="https://b.com" target="_blank">b(尚未开放)</a>
+                <a href="https://c.com" target="_blank">c(尚未开放)</a>
+                <a href="https://github.com/wbsjdt233/wbsjdt233.github.io" target="_blank">github项目页面</a>
+                <a href="#" onclick="downloadWallpaper()">随机获取一张壁纸</a>
             </div>
         </div>
     </div>
@@ -257,7 +298,7 @@ blank">网易云音乐</a>
     <script>
         function updateTime() {
             var now = new Date();
-            var time = now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+            var time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             var date = now.toLocaleDateString();
             document.getElementById('time').textContent = time;
             document.getElementById('date').textContent = date;
@@ -274,15 +315,33 @@ blank">网易云音乐</a>
 
         function toggleUrls(id) {
             var urls = document.getElementById(id);
+            var index = document.querySelector(`#${id}`).previousElementSibling;
             if (urls.style.display === "none" || urls.style.display === "") {
                 urls.style.display = "block";
+                index.querySelector('::after').style.transform = 'rotate(90deg)';
             } else {
                 urls.style.display = "none";
+                index.querySelector('::after').style.transform = 'rotate(0deg)';
             }
+        }
+
+        function downloadWallpaper() {
+            const link = document.createElement('a');
+            link.href = 'https://www.dmoe.cc/random.php'; // 壁纸的URL
+            link.download = 'wallpaper.jpg'; // 下载的文件名
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         setInterval(updateTime, 1000);
         updateTime();
     </script>
 </body>
+
 </html>
+<!--本项目遵循CC-BY-SA-4.0许可协议
+https://creativecommons.org/licenses/by-sa/4.0/
+项目地址https://github.com/wbsjdt233/wbsjdt233.github.io
+壁纸及图片下载使用樱花二次元图片API-Dmoe，侵权请联系
+地址https://www.dmoe.cc/-->
