@@ -2,6 +2,6 @@
 
 一个新标签页？（逃
 
-短链接：xtab.site 
+地址：wbsjdt.eu.org
 
 Github：wbsjdt233.github.io
