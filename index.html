@@ -12,20 +12,51 @@
             font-weight: normal;
             font-style: normal;
         }
-        
+
         body,
         html {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden;
-            font-family: 'Source Han Serif CN Heavy', sans-serif; /* 使用该字体 */
+            font-family: 'Source Han Serif CN Heavy', sans-serif;
+            /* 使用该字体 */
             color: white;
             background-color: #1b1b1b;
             background-image: url('https://www.dmoe.cc/random.php');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+        }
+
+        /* 每日一言窗口样式 */
+        #daily-wisdom-box {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 10px;
+            font-size: 1em;
+            text-align: left;
+            /* 文字左对齐 */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #daily-wisdom-content {
+            margin-top: 10px;
+            font-style: italic;
+            font-size: 1em;
+        }
+
+        #daily-wisdom-author {
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: right;
+            color: #aaa;
+            /* 作者右对齐 */
         }
 
         /* 时间和日期样式 */
@@ -66,7 +97,8 @@
             border: none;
             border-radius: 50px 0 0 50px;
             background-color: rgba(255, 255, 255, 0.7);
-            color: black; /* 修改为黑色 */
+            color: black;
+            /* 修改为黑色 */
             font-size: 1.2em;
             outline: none;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -228,6 +260,12 @@
         <img src="a.png" alt="Menu Icon">
     </div>
 
+    <!-- 每日一言窗口 -->
+    <div id="daily-wisdom-box">
+        <div id="daily-wisdom-content">加载中...</div>
+        <div id="daily-wisdom-author"></div> <!-- 显示作者 -->
+    </div>
+
     <!-- 折叠菜单 -->
     <div id="shortcuts">
         <div class="main">
@@ -303,6 +341,32 @@
     </div>
 
     <script>
+
+        // 获取每日一言
+        function fetchDailyWisdom() {
+            fetch('https://api.oioweb.cn/api/common/yiyan')  // GET 请求
+                .then(response => response.json())
+                .then(data => {
+                    // 处理返回的内容
+                    if (data.code === 200 && data.result) {
+                        const { content, author } = data.result; // 解构获取内容
+                        document.getElementById('daily-wisdom-content').textContent = content;  // 显示内容
+                        document.getElementById('daily-wisdom-author').textContent = `—— ${author}`;  // 显示作者
+                    } else {
+                        document.getElementById('daily-wisdom-content').textContent = "没有获取到内容。";
+                        document.getElementById('daily-wisdom-author').textContent = ""; // 清空作者
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('daily-wisdom-content').textContent = "获取每日一言失败，请稍后重试。";
+                    document.getElementById('daily-wisdom-author').textContent = ""; // 清空作者
+                    console.error('Error fetching daily wisdom:', error);
+                });
+        }
+
+        // 页面加载时获取每日一言
+        fetchDailyWisdom();
+
         function updateTime() {
             var now = new Date();
             var time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -351,5 +415,5 @@
 <!--本项目遵循CC-BY-SA-4.0许可协议
 https://creativecommons.org/licenses/by-sa/4.0/
 项目地址https://github.com/wbsjdt233/wbsjdt233.github.io
-壁纸及图片下载使用樱花二次元图片API-Dmoe，地址https://www.dmoe.cc/
+使用了一些API
 侵权请联系-->
